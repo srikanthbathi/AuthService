@@ -2,13 +2,20 @@ package com.nai.domain;
 
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 public class BasicDetails {
 
+    @NotEmpty
     private String name;
 
     @Indexed(unique = true)
+    @NotNull
+    @Field("emailAddress")
     private String email;
     private Long phone;
 

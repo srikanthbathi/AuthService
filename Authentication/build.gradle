@@ -20,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.projectlombok:lombok'
 	implementation 'com.google.cloud:google-cloud-storage:1.106.0'
+	implementation 'com.sendgrid:sendgrid-java:4.0.1'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

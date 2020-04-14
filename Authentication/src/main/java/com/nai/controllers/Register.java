@@ -7,6 +7,7 @@ import com.nai.domain.Address;
 import com.nai.domain.BasicDetails;
 import com.nai.domain.Store;
 import com.nai.google.util.StorageUtil;
+import com.nai.services.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,9 @@ public class Register {
     @Autowired
     private StorageUtil storageUtil;
 
+    @Autowired
+    private Notification notification;
+
     @PostMapping
     public ResponseEntity registerStore(@RequestBody Store store){
         store.setAddress(new Address());
@@ -48,6 +52,7 @@ public class Register {
 
 
         List<Store> stores = mongoTemplate.findAll(Store.class);
+        notification.sendEmail("srikanth581267@gmail.com");
         try {
             storageUtil.uploadObject();
         }catch (IOException ex){

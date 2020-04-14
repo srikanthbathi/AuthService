@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -37,5 +39,15 @@ public class MongoDbConfig {
     @Bean
     public RestTemplate restTemplate(){
         return  new RestTemplate();
+    }
+
+
+    public LocalValidatorFactoryBean localValidatorFactoryBean(){
+        return new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public ValidatingMongoEventListener validatingMongoEventListener(){
+        return  new ValidatingMongoEventListener(localValidatorFactoryBean());
     }
 }
